@@ -1,5 +1,8 @@
 package pl.sdacademy.podstawy;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+
 public class Company {
 
     private final Country country;
@@ -32,5 +35,18 @@ public class Company {
         if (employees != null) {
             this.employees = employees;
         }
+    }
+
+    public Employee[] getRetiredEmployees(LocalDate localDate){
+        Employee[] retiredEmployess = new Employee[employees.length];
+        int counter = 0;
+        for (Employee employee : employees){
+            if(employee.isRetired(localDate,country)){
+                retiredEmployess[counter] = employee;
+                counter++;
+            }
+        }
+        return Arrays.copyOf(retiredEmployess,counter);
+
     }
 }
